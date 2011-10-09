@@ -2,7 +2,7 @@
 
 include "../toggle/Toggle.inc.php";
 
-if (Toggle::getInstance()->check('test_toggle'))
+if (\toggle\Toggle::getInstance()->check('test_toggle'))
 {
 	
 }
