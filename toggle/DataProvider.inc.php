@@ -17,6 +17,12 @@ class DataProvider
 		$this->load('data.json');
 	}
 	
+	/**
+	 * Loads the data file
+	 * 
+	 * @param string $filename
+	 * @return void
+	 */
 	private function load($filename)
 	{
 		if (file_exists($filename))
@@ -41,5 +47,4 @@ class DataProvider
 	{
 		return isset($this->_flags->$name);
 	}
-	
 }
