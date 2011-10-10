@@ -12,7 +12,7 @@ use \Toggle\Data\Provider;
 class File implements Provider
 {
 	private
-		$_flags;
+		$_data;
 		
 	public function __construct()
 	{
@@ -29,8 +29,8 @@ class File implements Provider
 	{
 		if (file_exists($filename))
 		{
-			$this->_flags = json_decode(file_get_contents($filename));
-			if ($this->_flags === null) {
+			$this->_data = json_decode(file_get_contents($filename));
+			if ($this->_data === null) {
 				throw new \Exception('Unable to parse data file');
 			}
 		}
@@ -47,6 +47,6 @@ class File implements Provider
 	 */
 	public function check($name)
 	{
-		return isset($this->_flags->$name);
+		return isset($this->_data->$name);
 	}
 }
