@@ -1,7 +1,7 @@
 <?php
-namespace toggle;
+namespace Toggle;
 
-include 'DataProvider.inc.php';
+include 'Data/Provider.inc.php';
 
 /**
  * This is the base toggle class currently implemented as a singleton but will be refactored later
@@ -19,7 +19,7 @@ class Toggle
 
 	private function __construct()
 	{
-		$this->_dataProvider = new DataProvider();
+		$this->_dataProvider = new Data\Provider();
 	}
 	
 	/**

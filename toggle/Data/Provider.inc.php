@@ -1,5 +1,5 @@
 <?php
-namespace toggle;
+namespace Toggle\Data;
 
 /**
  * This is data provider class for the toggle system.
@@ -7,7 +7,7 @@ namespace toggle;
  * @author tom
  */
 
-class DataProvider
+class Provider
 {
 	private
 		$_flags;
