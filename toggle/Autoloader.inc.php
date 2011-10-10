@@ -9,17 +9,37 @@ namespace Toggle;
 
 class Autoloader
 {
+	private static $_registered=false;
+	
+	/**
+	 * Registers the toggle autoloader
+	 * 
+	 * @return void;
+	 */
 	public static function register()
 	{
-		spl_autoload_register(array(__NAMESPACE__ .'\Autoloader', 'autoload'), true);
+		if (!self::$_registered)
+		{
+			spl_autoload_register(array(__NAMESPACE__ .'\Autoloader', 'autoload'), true);
+			$_registered = true;
+		}
 	}
 	
+	/**
+	 * Toggle class autoloader
+	 * 
+	 * @param string $classname
+	 */
 	public static function autoload($classname)
 	{
 		if (substr($classname, 0, 7) != 'Toggle\\') {
 			return false;
 		}
 		
-		require_once(dirname(__FILE__) . substr(str_replace('\\', '/', $classname), 6) . '.inc.php');
+		$filepath = dirname(__FILE__) . substr(str_replace('\\', '/', $classname), 6) . '.inc.php';
+		
+		if (file_exists($filepath)) {
+			require_once($filepath);
+		}
 	}
 }
