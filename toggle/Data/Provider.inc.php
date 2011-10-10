@@ -10,10 +10,10 @@ namespace Toggle\Data;
 interface Provider
 {
 	/**
-	 * Checks if a named code path should be run and returns a boolean value
+	 * Get a data element by name
 	 * 
 	 * @param string $name
-	 * @return bool
+	 * @return Element
 	 */
-	public function check($name);
+	public function getElement($name);
 }

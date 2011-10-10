@@ -31,7 +31,7 @@ class Toggle
 	 */
 	public function check($name)
 	{
-		return $this->_dataProvider->check($name);
+		return $this->_dataProvider->getElement($name)->isGlobal();
 	}
 	
 	/**

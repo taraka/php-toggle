@@ -1,6 +1,7 @@
 <?php
 namespace Toggle\Data\Provider;
 
+use Toggle\Data\Element;
 use \Toggle\Data\Provider;
 
 /**
@@ -40,13 +41,22 @@ class File implements Provider
 	}
 	
 	/**
-	 * Checks if a named code path should be run and returns a boolean value
-	 * 
-	 * @param string $name
-	 * @return bool
+	 * (non-PHPdoc)
+	 * @see Toggle\Data.Provider::getElement()
 	 */
-	public function check($name)
+	public function getElement($name)
 	{
-		return isset($this->_data->$name);
+		$element = new Element();
+		
+		if (isset($this->_data->$name))
+		{
+			$data = $this->_data->$name;
+			
+			if (isset($data->global)) {
+				$element->setGlobal($data->global);
+			}
+		}
+		
+		return $element;
 	}
 }
