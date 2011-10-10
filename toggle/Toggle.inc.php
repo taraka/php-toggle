@@ -20,7 +20,7 @@ class Toggle
 
 	private function __construct()
 	{
-		$this->_dataProvider = new Data\Provider\File();
+		$this->initDataProvider();
 	}
 	
 	/**
@@ -31,7 +31,30 @@ class Toggle
 	 */
 	public function check($name)
 	{
-		return $this->_dataProvider->getElement($name)->isGlobal();
+		$element = $this->_dataProvider->getElement($name);
+		
+		if ($element->isGlobal()) {
+			return true;
+		}
+		
+		return false;
+	}
+	
+	/**
+	 * Initializes the DataProvider for the toggle instance
+	 * 
+	 * @return void;
+	 */
+	private function initDataProvider()
+	{
+		switch (strtolower(Config::getInstance()->get('data_provider')))
+		{
+			case 'file';
+				$this->_dataProvider = new Data\Provider\File();
+				break;
+			default:
+				throw new \Exception('Unrecognised data provider defined in config.');
+		}
 	}
 	
 	/**
