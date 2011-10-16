@@ -39,7 +39,7 @@ class File implements Provider
 			throw new \Exception('Unable to load php-toggle data file');
 		}
 	}
-	
+
 	/**
 	 * (non-PHPdoc)
 	 * @see Toggle\Data.Provider::getElement()

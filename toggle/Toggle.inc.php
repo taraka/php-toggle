@@ -18,10 +18,7 @@ class Toggle
 	private
 		$_dataProvider;
 
-	private function __construct()
-	{
-		$this->initDataProvider();
-	}
+	private function __construct() {}
 	
 	/**
 	 * Checks if a named code path should be run and returns a boolean value
@@ -31,7 +28,7 @@ class Toggle
 	 */
 	public function check($name)
 	{
-		$element = $this->_dataProvider->getElement($name);
+		$element = $this->getDataProvider()->getElement($name);
 		
 		if ($element->isGlobal()) {
 			return true;
@@ -55,6 +52,20 @@ class Toggle
 			default:
 				throw new \Exception('Unrecognised data provider defined in config.');
 		}
+	}
+	
+	/**
+	 * Gets the current data prodiver (lazy loaded)
+	 * 
+	 * @return \toggle\Data\Provider
+	 */
+	private function getDataProvider()
+	{
+		if (!isset($this->_dataProvider)) {
+			$this->initDataProvider();
+		}
+		
+		return $this->_dataProvider;
 	}
 	
 	/**
